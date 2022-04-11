@@ -3,4 +3,9 @@ package.json
 package-lock.json
 node_modules/
 
+# firebase
+.firebase/
+.github/
+
 .env
+*.log
