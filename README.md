@@ -1,11 +1,5 @@
 # ZBAV - Sistema di gestione di cartelle mediche
 
-### Indicazioni
-
- - Per eseguire il server sono necessari i seguenti moduli:
-   - [express](https://www.npmjs.com/package/express)
-   - [firebase](https://www.npmjs.com/package/firebase)
-   - [dotenv](https://www.npmjs.com/package/dotenv)
 ### Schema RDB:
 
 Medici(**cf_medico**, nome, cognome, data_nascita, sesso_biologico, luogo_nascita, cittadinanza, specializzazione)<br/>
