@@ -64,7 +64,19 @@ export async function getCartella(cf_paziente, id_cartella) {
 // END READ
 
 // UPDATE
+// TODO: update
 // END UPDATE
 
 // DELETE
+export function deletePaziente(cf_paziente) {
+    set(ref(getDatabase(), 'pazienti/' + cf_paziente), null);
+}
+
+export function deleteMedico(cf_medico) {
+    set(ref(getDatabase(), 'medici/' + cf_medico), null);
+}
+
+export function deletePaziente(cf_paziente, id_cartella) {
+    set(ref(getDatabase(), 'pazienti/' + cf_paziente + "/" + id_cartella), null);
+}
 // END DELETE
