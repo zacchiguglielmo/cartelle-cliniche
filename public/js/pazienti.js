@@ -1,5 +1,5 @@
 import * as config from "./config.js";
-import { getPazientiFromRealtimeDB } from "./realtimeInterface.js";
+import { getPazientiFromRealtimeDB, deletePazienteFromRealtimeDB } from "./realtimeInterface.js";
 
 function getAge(dateString) {
     var today = new Date();
@@ -12,7 +12,12 @@ function getAge(dateString) {
     return age;
 }
 
+async function deletePaziente() {
+
+}
+
 async function loadPazienti() {
+    document.getElementById("pazientiContainer").innerHTML = "";
     let pazienti;
     if (config.DB_SYSTEM == "realtime") {
         pazienti = await getPazientiFromRealtimeDB();
@@ -28,17 +33,21 @@ async function loadPazienti() {
         let pazienteElement = document.createElement("div");
         pazienteElement.innerHTML = text;
         pazienteElement.setAttribute("class", "row");
+        pazienteElement.setAttribute("id", pazienti[i].cf_paziente);
 
         // SET VALUES
         pazienteElement.querySelector("#nome").innerHTML = pazienti[i].nome;
         pazienteElement.querySelector("#cognome").innerHTML = pazienti[i].cognome;
         pazienteElement.querySelector("#dataNascita").innerHTML =
             pazienti[i].dataNascita;
-        // TODO: calculate data nascita
         pazienteElement.querySelector("#eta").innerHTML = getAge(
             pazienti[i].dataNascita
         );
         pazienteElement.querySelector("#sesso").innerHTML = pazienti[i].sesso;
+        pazienteElement.querySelector("#delete").addEventListener("click", () => {
+            deletePazienteFromRealtimeDB(pazienti[i].cf_paziente);
+            loadPazienti();
+        });
 
         // FIX ID NAMES
         pazienteElement.querySelector("#nome").setAttribute("id", "nome" + i);
@@ -48,6 +57,9 @@ async function loadPazienti() {
             .setAttribute("id", "dataNascita" + i);
         pazienteElement.querySelector("#eta").setAttribute("id", "eta" + i);
         pazienteElement.querySelector("#sesso").setAttribute("id", "sesso" + i);
+        pazienteElement.querySelector("#show").setAttribute("id", "show" + i);
+        pazienteElement.querySelector("#modify").setAttribute("id", "modify" + i);
+        pazienteElement.querySelector("#delete").setAttribute("id", "delete" + i);
 
         // ADD CHILD
         document.getElementById("pazientiContainer").appendChild(pazienteElement);

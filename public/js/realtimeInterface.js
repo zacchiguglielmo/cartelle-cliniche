@@ -69,7 +69,7 @@ export async function getCartella(cf_paziente, id_cartella) {
 // END UPDATE
 
 // DELETE
-export function deletePaziente(cf_paziente) {
+export function deletePazienteFromRealtimeDB(cf_paziente) {
   set(ref(getDatabase(), "pazienti/" + cf_paziente), null);
 }
 
