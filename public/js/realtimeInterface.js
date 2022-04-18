@@ -7,28 +7,28 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 // CREATE
-export function addOnDb(path, value, id) {
+export async function addOnDb(path, value, id) {
   if (id == undefined) {
-    const postRef = push(ref(getDatabase(), path));
-    set(postRef, value);
+    const postRef = await push(ref(getDatabase(), path));
+    await set(postRef, value);
   } else {
-    set(ref(getDatabase(), path + "/" + id), value);
+    await set(ref(getDatabase(), path + "/" + id), value);
   }
 }
 
-export function addPaziente(paziente) {
+export async function addPazienteToRealtimeDB(paziente) {
   if (paziente.cf_paziente == undefined)
     console.error("CF paziente obbligatorio");
-  else addOnDb("/pazienti", paziente, paziente.cf_paziente);
+  else await addOnDb("/pazienti", paziente, paziente.cf_paziente);
 }
 
-export function addMedico(medico) {
+export async function addMedico(medico) {
   if (medico.cf_medico == undefined) console.error("CF medico obbligatorio");
-  else addOnDb("/medico", medico, medico.cf_medico);
+  else await addOnDb("/medico", medico, medico.cf_medico);
 }
 
-export function addCartella(cartella, cf_paziente) {
-  addOnDb("/cartelle/" + cf_paziente, cartella);
+export async function addCartella(cartella, cf_paziente) {
+  await addOnDb("/cartelle/" + cf_paziente, cartella);
 }
 // END CREATE
 
@@ -39,7 +39,7 @@ export async function getFromDb(path) {
   else return {};
 }
 
-export async function getPazienti() {
+export async function getPazientiFromRealtimeDB() {
   return await getFromDb("/pazienti");
 }
 
