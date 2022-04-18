@@ -29,6 +29,7 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
  cartelle_cliniche: {
  	<cf_paziente>: [{
 		id_cartella,
+		cf_medico,
 		info_cartella: {},
 		data: {}
 	}]
