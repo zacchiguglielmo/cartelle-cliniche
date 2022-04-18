@@ -14,7 +14,8 @@ async function addPaziente() {
 
     if (config.DB_SYSTEM == "realtime") {
         await addPazienteToRealtimeDB({
-            nome, cognome, cf_paziente, dataNascita, dataMorte, luogoNascita, cittadinanza, sesso
+            cf_paziente,
+            info_paziente: { nome, cognome, dataNascita, dataMorte, luogoNascita, cittadinanza, sesso }
         });
         window.location.href = "../html/listaPazienti.html";
     } else if (config.DB_SYSTEM == "firestore") {

@@ -43,7 +43,7 @@ export async function getPazientiFromRealtimeDB() {
   return await getFromDb("/pazienti");
 }
 
-export async function getPaziente(cf_paziente) {
+export async function getPazienteFromRealtimeDB(cf_paziente) {
   return await getPazienti()[cf_paziente];
 }
 
@@ -51,12 +51,15 @@ export async function getMedici() {
   return await getFromDb("/medici");
 }
 
-export async function getMedico(cf_medico) {
+export async function getMedicoFromRealtimeDB(cf_medico) {
   return await getMedici()[cf_medico];
 }
 
-export async function getCartelle(cf_paziente) {
-  return await getFromDb(`/cartelle_cliniche/${cf_paziente}`);
+export async function getCartelleFromRealtimeDB(cf_paziente) {
+  if (cf_paziente == undefined)
+    return await getFromDb("/cartelle_cliniche");
+  else
+    return await getFromDb(`/ cartelle_cliniche / ${cf_paziente}`);
 }
 
 export async function getCartella(cf_paziente, id_cartella) {
@@ -77,7 +80,7 @@ export function deleteMedico(cf_medico) {
   set(ref(getDatabase(), "medici/" + cf_medico), null);
 }
 
-export function deleteCartella(cf_paziente, id_cartella) {
+export function deleteCartellaFromRealtimeDB(cf_paziente, id_cartella) {
   set(ref(getDatabase(), "pazienti/" + cf_paziente + "/" + id_cartella), null);
 }
-// END DELETE
+// END DELETE;

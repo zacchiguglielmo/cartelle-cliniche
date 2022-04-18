@@ -12,10 +12,6 @@ function getAge(dateString) {
     return age;
 }
 
-async function deletePaziente() {
-
-}
-
 async function loadPazienti() {
     document.getElementById("pazientiContainer").innerHTML = "";
     let pazienti;
@@ -27,7 +23,7 @@ async function loadPazienti() {
         return;
     }
 
-    let response = await fetch("templates/templatePaziente.html");
+    let response = await fetch("../templates/templatePaziente.html");
     let text = await response.text();
     for (let i in pazienti) {
         let pazienteElement = document.createElement("div");
@@ -52,9 +48,7 @@ async function loadPazienti() {
         // FIX ID NAMES
         pazienteElement.querySelector("#nome").setAttribute("id", "nome" + i);
         pazienteElement.querySelector("#cognome").setAttribute("id", "cognome" + i);
-        pazienteElement
-            .querySelector("#dataNascita")
-            .setAttribute("id", "dataNascita" + i);
+        pazienteElement.querySelector("#dataNascita").setAttribute("id", "dataNascita" + i);
         pazienteElement.querySelector("#eta").setAttribute("id", "eta" + i);
         pazienteElement.querySelector("#sesso").setAttribute("id", "sesso" + i);
         pazienteElement.querySelector("#show").setAttribute("id", "show" + i);
