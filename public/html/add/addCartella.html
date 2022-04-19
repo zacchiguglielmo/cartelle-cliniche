@@ -30,13 +30,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../lists/listaPazienti.html">Lista pazienti</a>
+                        <a class="nav-link active" aria-current="page" href="../lists/listaPazienti.html">Lista
+                            pazienti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../lists/listaCartelle.html">Lista cartelle</a>
+                        <a class="nav-link active" aria-current="page" href="../lists/listaCartelle.html">Lista
+                            cartelle</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Lista medici</a>
+                        <a class="nav-link active" aria-current="page" href="../lists/listaMedici.html">Lista medici</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
@@ -44,10 +46,11 @@
                             Lista esami
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Lista prescrizioni</a></li>
-                            <li><a class="dropdown-item" href="#">Lista interventi</a></li>
-                            <li><a class="dropdown-item" href="#">Lista esami</a></li>
-                            <li><a class="dropdown-item" href="#">Lista anamnesi</a></li>
+                            <li><a class="dropdown-item" href="../lists/listaPrescrizioni.html">Lista prescrizioni</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../lists/listaInterventi.html">Lista interventi</a></li>
+                            <li><a class="dropdown-item" href="../lists/listaEsami.html">Lista esami</a></li>
+                            <li><a class="dropdown-item" href="../lists/listaAnamnesi.html">Lista anamnesi</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -64,32 +67,47 @@
             <div class="container bg-light p-4 rounded">
 
                 <div class="row">
-                    <div class="col text-bold">#
+                    <div class="col text-bold">Codice fiscale paziente
                         <a style="color:red">*</a>
                     </div>
                     <div class="col">
-                        <input id="#" required>
+                        <input class="form-control" id="#" required>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col text-bold">#
+                    <div class="col text-bold">Codice fiscale medico
                         <a style="color:red">*</a>
                     </div>
                     <div class="col">
-                        <input id="#" required>
+                        <input class="form-control" id="#" required>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col text-bold">#
+                    <div class="col text-bold">Data e ora inizio ricovero
+                        <a style="color:red">*</a>
                     </div>
                     <div class="col">
-                        <input id="#" pattern="[A-Z]{6}[0-9]{2}[A-Z]{1}[0-9]{2}[A-Z]{1}[0-9]{3}[A-Z]{1}"
-                            required>
+                        <input class="form-control" id="#" required>
                     </div>
                 </div>
-                <p>...</p>
+                
+                <div class="row">
+                    <div class="col text-bold">Stato di salute
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col text-bold">Note
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#">
+                    </div>
+                </div>
 
                 <button id="submit" class="btn btn-primary">
                     Aggiungi
