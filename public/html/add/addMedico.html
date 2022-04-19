@@ -15,7 +15,7 @@
     <script type="module" src="../../js/firebaseInit.js"></script>
     <script type="module" src="../../js/addPaziente.js"></script>
 
-    <title>Aggiungi paziente</title>
+    <title>Aggiungi medico</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                             </li>
                             <li><a class="dropdown-item" href="../lists/listaInterventi.html">Lista interventi</a></li>
                             <li><a class="dropdown-item" href="../lists/listaEsami.html">Lista esami</a></li>
-                            <li><a class="dropdown-item " href="../lists/listaAnamnesi.html">Lista anamnesi</a></li>
+                            <li><a class="dropdown-item" href="../lists/listaAnamnesi.html">Lista anamnesi</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -63,14 +63,22 @@
 
     <main class="container">
         <div class="bg-light p-3 rounded">
-            <h1 class="text-center">AGGIUNGI PAZIENTE</h1>
+            <h1 class="text-center">AGGIUNGI MEDICO</h1>
             <div class="container bg-light p-4 rounded">
+
+                <div class="row">
+                    <div class="col text-bold">Codice fiscale medico
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#" required>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col text-bold">Nome
                     </div>
                     <div class="col">
-                        <input class="form-control" id="nome" required>
+                        <input class="form-control" id="#" required>
                     </div>
                 </div>
 
@@ -78,16 +86,7 @@
                     <div class="col text-bold">Cognome
                     </div>
                     <div class="col">
-                        <input class="form-control" id="cognome" required>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col text-bold">Codice Fiscale
-                    </div>
-                    <div class="col">
-                        <input class="form-control" id="cf_paziente" pattern="[A-Z]{6}[0-9]{2}[A-Z]{1}[0-9]{2}[A-Z]{1}[0-9]{3}[A-Z]{1}"
-                            required>
+                        <input class="form-control" id="#" required>
                     </div>
                 </div>
 
@@ -95,36 +94,10 @@
                     <div class="col text-bold">Data di nascita
                     </div>
                     <div class="col">
-                        <input class="form-control" id="dataNascita" type="date" required>
+                        <input class="form-control" id="#" type="date">
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col text-bold">Data di morte <small class="text-muted">(eventuale)</small>
-                    </div>
-                    <div class="col">
-                        <input class="form-control" type="date" id="dataMorte">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col text-bold">Luogo di nascita
-                    </div>
-
-                    <div class="col">
-                        <input class="form-control" id="luogoNascita" required>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col text-bold">Cittadinanza
-                    </div>
-
-                    <div class="col">
-                        <input class="form-control" id="cittadinanza" required>
-                    </div>
-                </div>
-
+                
                 <div class="row">
                     <div class="col text-bold">Sesso biologico
                     </div>
@@ -137,13 +110,35 @@
                         </select>
                     </div>
                 </div>
-                <!--TODO add tel_contatto, nominativo_contatto-->
 
-                <div class="container">                    
-                    <button id="submit" class="btn btn-primary">
-                        Aggiungi
-                    </button>
+                <div class="row">
+                    <div class="col text-bold">Luogo di nascita
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#" required>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col text-bold">Specializzazione
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-bold">cittadinanza
+                        <small class="text-muted"> (facoltativo)</small>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#">
+                    </div>
+                </div>
+
+                <button id="submit" class="btn btn-primary">
+                    Aggiungi
+                </button>
 
             </div>
     </main>
