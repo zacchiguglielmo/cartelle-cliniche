@@ -51,7 +51,9 @@
                             <li><a class="dropdown-item" href="../lists/listaInterventi.html">Lista interventi</a></li>
                             <li><a class="dropdown-item" href="../lists/listaEsami.html">Lista esami</a></li>
                             <li><a class="dropdown-item" href="../lists/listaAnamnesi.html">Lista anamnesi</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item disabled" href="../add/addEsame.html">Aggiungi esame</a></li>
                         </ul>
                     </li>
@@ -64,62 +66,151 @@
     </nav>
 
     <main class="container">
-        <div class="bg-light p-3 rounded">
+        <div class="p-3 rounded" style="background-color:#adb5bd">
             <h1 class="text-center">AGGIUNGI ESAME</h1>
-            <div class="container bg-light p-4 rounded">
+            <div class="container p-4 rounded">
+
+                <div class="row">
+                    <div class="col text-bold">ID Cartella
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-bold">Medico responsabile
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="#" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-bold">Data
+                    </div>
+                    <div class="col">
+                        <input class="form-control" id="noteCura" type="date" required>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col text-bold">Tipo esame
                     </div>
 
                     <div class="col">
-                        <select class="form-select"id="tipoEsame" required>
+                        <select class="form-select" id="tipoEsame" required>
                             <option value=""></option>
                             <option value="prescrizione">Prescrizione</option>
-                            <option value="intervneto">Intervento</option>
-                            <option value="esamee">Esame</option>
-                            <option value="Anamnesi">Anamnesi</option>
+                            <option value="intervento">Intervento</option>
+                            <option value="esame">Esame</option>
+                            <option value="anamnesi">Anamnesi</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col text-bold">Codice fiscale medico
-                        <a style="color:red">*</a>
+                <div class="container visually-hidden text-white" id="divPrescrizione">
+                    <div class="row">
+                        <div class="col text-bold">Nome cura
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="nomeCura" required>
+                        </div>
                     </div>
-                    <div class="col">
-                        <input class="form-control" id="#" required>
+                    <div class="row">
+                        <div class="col text-bold">Descrizione cura
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="descrizioneCura" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="container visually-hidden text-white" id="divIntervento">
+                    <div class="row">
+                        <div class="col text-bold">Tipo
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-bold">Orario inizio
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" type="time" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-bold">Orario fine
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" type="time" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-bold">Esito
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="container visually-hidden text-white" id="divEsame">
+                    <div class="row">
+                        <div class="col text-bold">Tipo
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-bold">Risultati
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="container visually-hidden text-white" id="divAnamnesi">
+                    <div class="row">
+                        <div class="col text-bold">Descrizione
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="#" required>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col text-bold">Data e ora inizio ricovero
-                        <a style="color:red">*</a>
-                    </div>
-                    <div class="col">
-                        <input class="form-control" id="#" required>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col text-bold">Stato di salute
-                    </div>
-                    <div class="col">
-                        <input class="form-control" id="#">
-                    </div>
-                </div>
-                
                 <div class="row">
                     <div class="col text-bold">Note
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#">
+                        <input class="form-control" id="noteCura" required>
                     </div>
                 </div>
 
-                <button id="submit" class="btn btn-primary">
-                    Aggiungi
-                </button>
+                <script>
+                    var tipoEsameField = document.getElementById("tipoEsame");
+                    var divPrescrizione = document.getElementById("divPrescrizione");
+                    var divIntervento = document.getElementById("divIntervento");
+                    var divEsame = document.getElementById("divEsame");
+                    var divAnamnesi = document.getElementById("divAnamnesi");
+
+                    tipoEsameField.onchange = function () {
+                        var tipoEsame = document.getElementById("tipoEsame").value;
+
+                        divPrescrizione.classList.add("visually-hidden");
+                        divIntervento.classList.add("visually-hidden");
+                        divEsame.classList.add("visually-hidden");
+                        divAnamnesi.classList.add("visually-hidden");
+                        
+                        switch (tipoEsame) {
+                            case "prescrizione": divPrescrizione.classList.remove("visually-hidden"); break;
+                            case "intervento": divIntervento.classList.remove("visually-hidden"); break;
+                            case "esame": divEsame.classList.remove("visually-hidden"); break;
+                            case "anamnesi": divAnamnesi.classList.remove("visually-hidden"); break;
+                        }
+                    }
+                </script>
 
             </div>
     </main>
