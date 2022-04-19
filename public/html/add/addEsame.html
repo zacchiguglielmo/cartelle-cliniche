@@ -15,7 +15,7 @@
     <script type="module" src="../../js/firebaseInit.js"></script>
     <script type="module" src="../../js/addPaziente.js"></script>
 
-    <title>Aggiungi cartella </title>
+    <title>Aggiungi esame</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
                             <li><a class="dropdown-item" href="../lists/listaEsami.html">Lista esami</a></li>
                             <li><a class="dropdown-item" href="../lists/listaAnamnesi.html">Lista anamnesi</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../add/addEsame.html">Aggiungi esame</a></li>
+                            <li><a class="dropdown-item disabled" href="../add/addEsame.html">Aggiungi esame</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -65,15 +65,21 @@
 
     <main class="container">
         <div class="bg-light p-3 rounded">
-            <h1 class="text-center">AGGIUNGI CARTELLE CLINICHE</h1>
+            <h1 class="text-center">AGGIUNGI ESAME</h1>
             <div class="container bg-light p-4 rounded">
 
                 <div class="row">
-                    <div class="col text-bold">Codice fiscale paziente
-                        <a style="color:red">*</a>
+                    <div class="col text-bold">Tipo esame
                     </div>
+
                     <div class="col">
-                        <input class="form-control" id="#" required>
+                        <select class="form-select"id="tipoEsame" required>
+                            <option value=""></option>
+                            <option value="prescrizione">Prescrizione</option>
+                            <option value="intervneto">Intervento</option>
+                            <option value="esamee">Esame</option>
+                            <option value="Anamnesi">Anamnesi</option>
+                        </select>
                     </div>
                 </div>
 
