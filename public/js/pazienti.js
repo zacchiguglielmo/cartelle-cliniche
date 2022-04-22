@@ -32,14 +32,14 @@ async function loadPazienti() {
         pazienteElement.setAttribute("id", pazienti[i].cf_paziente);
 
         // SET VALUES
-        pazienteElement.querySelector("#nome").innerHTML = pazienti[i].nome;
-        pazienteElement.querySelector("#cognome").innerHTML = pazienti[i].cognome;
+        pazienteElement.querySelector("#nome").innerHTML = pazienti[i].info_paziente.nome;
+        pazienteElement.querySelector("#cognome").innerHTML = pazienti[i].info_paziente.cognome;
         pazienteElement.querySelector("#dataNascita").innerHTML =
-            pazienti[i].dataNascita;
+            pazienti[i].info_paziente.dataNascita;
         pazienteElement.querySelector("#eta").innerHTML = getAge(
-            pazienti[i].dataNascita
+            pazienti[i].info_paziente.dataNascita
         );
-        pazienteElement.querySelector("#sesso").innerHTML = pazienti[i].sesso;
+        pazienteElement.querySelector("#sesso").innerHTML = pazienti[i].info_paziente.sesso;
         pazienteElement.querySelector("#delete").addEventListener("click", () => {
             deletePazienteFromRealtimeDB(pazienti[i].cf_paziente);
             loadPazienti();

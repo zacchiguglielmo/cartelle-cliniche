@@ -67,7 +67,7 @@
 
     <main class="container">
         <div class="p-3 rounded" style="background-color:#adb5bd">
-            <h1 class="text-center">AGGIUNGI ESAME</h1>
+            <h1 class="text-center">AGGIUNGI REFERTO</h1>
             <div class="container p-4 rounded">
 
                 <div class="row">
@@ -94,11 +94,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col text-bold">Tipo esame
+                    <div class="col text-bold">Tipo Referto
                     </div>
 
                     <div class="col">
-                        <select class="form-select" id="tipoEsame" required>
+                        <select class="form-select" id="tipoReferto" required>
                             <option value=""></option>
                             <option value="prescrizione">Prescrizione</option>
                             <option value="intervento">Intervento</option>
@@ -129,28 +129,28 @@
                         <div class="col text-bold">Tipo
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" required>
+                            <input class="form-control" id="tipoIntervento" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Orario inizio
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" type="time" required>
+                            <input class="form-control" id="orarioInizioIntervento" type="time" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Orario fine
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" type="time" required>
+                            <input class="form-control" id="orarioFineIntervento" type="time" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Esito
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" required>
+                            <input class="form-control" id="esitoIntervento" required>
                         </div>
                     </div>
                 </div>
@@ -159,14 +159,14 @@
                         <div class="col text-bold">Tipo
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" required>
+                            <input class="form-control" id="tipoEsame" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Risultati
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" required>
+                            <input class="form-control" id="risultatiEsame" required>
                         </div>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                         <div class="col text-bold">Descrizione
                         </div>
                         <div class="col">
-                            <input class="form-control" id="#" required>
+                            <input class="form-control" id="descrizioneAnamnesi" required>
                         </div>
                     </div>
                 </div>
@@ -189,25 +189,59 @@
                 </div>
 
                 <script>
-                    var tipoEsameField = document.getElementById("tipoEsame");
-                    var divPrescrizione = document.getElementById("divPrescrizione");
-                    var divIntervento = document.getElementById("divIntervento");
-                    var divEsame = document.getElementById("divEsame");
-                    var divAnamnesi = document.getElementById("divAnamnesi");
+                    let tipoRefertoField = document.getElementById("tipoReferto");
+                    let divPrescrizione = document.getElementById("divPrescrizione");
+                    let divIntervento = document.getElementById("divIntervento");
+                    let divEsame = document.getElementById("divEsame");
+                    let divAnamnesi = document.getElementById("divAnamnesi");
 
-                    tipoEsameField.onchange = function () {
-                        var tipoEsame = document.getElementById("tipoEsame").value;
-
+                    function disableEverything() {
                         divPrescrizione.classList.add("visually-hidden");
                         divIntervento.classList.add("visually-hidden");
                         divEsame.classList.add("visually-hidden");
                         divAnamnesi.classList.add("visually-hidden");
+
+                        document.getElementById("nomeCura").removeAttribute("required");
+                        document.getElementById("descrizioneCura").removeAttribute("required");
+
+                        document.getElementById("tipoIntervento").removeAttribute("required");
+                        document.getElementById("orarioInizioIntervento").removeAttribute("required");
+                        document.getElementById("orarioFineIntervento").removeAttribute("required");
+                        document.getElementById("esitoIntervento").removeAttribute("required");
+
+                        document.getElementById("tipoEsame").removeAttribute("required");
+                        document.getElementById("risultatiEsame").removeAttribute("required");
+
+                        document.getElementById("descrizioneAnamnesi").removeAttribute("required");
+                    }
+
+                    tipoRefertoField.onchange = function () {
+                        let tipoReferto = document.getElementById("tipoReferto").value;
+
+                        disableEverything();
                         
-                        switch (tipoEsame) {
-                            case "prescrizione": divPrescrizione.classList.remove("visually-hidden"); break;
-                            case "intervento": divIntervento.classList.remove("visually-hidden"); break;
-                            case "esame": divEsame.classList.remove("visually-hidden"); break;
-                            case "anamnesi": divAnamnesi.classList.remove("visually-hidden"); break;
+                        switch (tipoReferto) {
+                            case "prescrizione": 
+                                divPrescrizione.classList.remove("visually-hidden");
+                                document.getElementById("nomeCura").setAttribute("required", "");
+                                document.getElementById("descrizioneCura").setAttribute("required", "");
+                                break;
+                            case "intervento": 
+                                divIntervento.classList.remove("visually-hidden"); 
+                                document.getElementById("tipoIntervento").setAttribute("required", "");
+                                document.getElementById("orarioInizioIntervento").setAttribute("required", "");
+                                document.getElementById("orarioFineIntervento").setAttribute("required", "");
+                                document.getElementById("esitoIntervento").setAttribute("required", "");
+                                break;
+                            case "esame": 
+                                divEsame.classList.remove("visually-hidden"); 
+                                document.getElementById("tipoEsame").setAttribute("required", "");
+                                document.getElementById("risultatiEsame").setAttribute("required", "");
+                                break;
+                            case "anamnesi": 
+                                divAnamnesi.classList.remove("visually-hidden"); 
+                                document.getElementById("descrizioneAnamnesi").setAttribute("required", "");
+                                break;
                         }
                     }
                 </script>

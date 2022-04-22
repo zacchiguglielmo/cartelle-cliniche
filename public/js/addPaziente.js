@@ -17,7 +17,7 @@ async function addPaziente() {
             cf_paziente,
             info_paziente: { nome, cognome, dataNascita, dataMorte, luogoNascita, cittadinanza, sesso }
         });
-        window.location.href = "../html/listaPazienti.html";
+        window.location.href = "../lists/listaPazienti.html";
     } else if (config.DB_SYSTEM == "firestore") {
     } else {
         console.error("Unknown db system: " + config.DB_SYSTEM);
