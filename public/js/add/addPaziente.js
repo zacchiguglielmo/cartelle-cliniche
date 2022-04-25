@@ -1,4 +1,4 @@
-import { addPaziente } from "./dbInterface/dbInterface.js";
+import { addPaziente } from "../dbInterface/dbInterface.js";
 
 async function onAddPaziente() {
     let nome = document.getElementById("nome").value;
