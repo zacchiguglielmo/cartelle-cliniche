@@ -1,8 +1,6 @@
-import * as config from "./config.js";
-import { addPazienteToFirestore } from "./firestoreInterface.js";
-import { addPazienteToRealtimeDB } from "./realtimeInterface.js";
+import { addPaziente } from "./dbInterface/dbInterface.js";
 
-async function addPaziente() {
+async function onAddPaziente() {
     let nome = document.getElementById("nome").value;
     let cognome = document.getElementById("cognome").value;
     let cf_paziente = document.getElementById("cf_paziente").value;
@@ -17,16 +15,10 @@ async function addPaziente() {
         cf_paziente,
         info_paziente: { nome, cognome, dataNascita, dataMorte, luogoNascita, cittadinanza, sesso }
     };
-    if (config.DB_SYSTEM == "realtime") {
-        await addPazienteToRealtimeDB(paziente);
-    } else if (config.DB_SYSTEM == "firestore") {
-        await addPazienteToFirestore(paziente);
-    } else {
-        console.error("Unknown db system: " + config.DB_SYSTEM);
-        return;
-    }
+
+    await addPaziente(paziente);
 
     window.location.href = "../lists/listaPazienti.html";
 }
 
-$("#submit").click(addPaziente);
+$("#submit").click(onAddPaziente);

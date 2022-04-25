@@ -94,7 +94,7 @@ export function deleteCartellaFromRealtimeDB(cf_paziente, id_cartella) {
   deleteFromDb(`cartelle/${cf_paziente}/${id_cartella}`);
 }
 
-export async function deleteRefertoFromRealtimeDB(cf_paziente, id_cartella, id_referto) {
-  deleteFromDb(`cartelle/${cf_paziente}/${id_cartella}/${id_referto}`);
+export async function deleteRefertoFromRealtimeDB(cf_paziente, id_cartella, tipo_referto, id_referto) {
+  deleteFromDb(`cartelle/${cf_paziente}/${id_cartella}/${tipo_referto}/${id_referto}`);
 }
 // END DELETE;

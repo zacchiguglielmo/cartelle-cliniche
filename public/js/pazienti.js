@@ -1,5 +1,4 @@
-import * as config from "./config.js";
-import { getPazientiFromRealtimeDB, deletePazienteFromRealtimeDB } from "./realtimeInterface.js";
+import { deletePaziente, getPazienti } from "./dbInterface/dbInterface.js";
 
 function getAge(dateString) {
     var today = new Date();
@@ -14,14 +13,7 @@ function getAge(dateString) {
 
 async function loadPazienti() {
     document.getElementById("pazientiContainer").innerHTML = "";
-    let pazienti;
-    if (config.DB_SYSTEM == "realtime") {
-        pazienti = await getPazientiFromRealtimeDB();
-    } else if (config.DB_SYSTEM == "firestore") {
-    } else {
-        console.error("Unknown db system: " + config.DB_SYSTEM);
-        return;
-    }
+    let pazienti = await getPazienti();
 
     let response = await fetch("../templates/templatePaziente.html");
     let text = await response.text();
@@ -41,7 +33,7 @@ async function loadPazienti() {
         );
         pazienteElement.querySelector("#sesso").innerHTML = pazienti[i].info_paziente.sesso;
         pazienteElement.querySelector("#delete").addEventListener("click", () => {
-            deletePazienteFromRealtimeDB(pazienti[i].cf_paziente);
+            deletePaziente(pazienti[i].cf_paziente);
             loadPazienti();
         });
 
