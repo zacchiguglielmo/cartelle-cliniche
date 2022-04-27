@@ -55,3 +55,4 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
  - I risultati di un esito possono essere di diversi tipi
 
 ### TODO:
+ - ON DELETE CASCADE

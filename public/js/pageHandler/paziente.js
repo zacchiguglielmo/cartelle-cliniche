@@ -64,6 +64,9 @@ async function loadCartelle() {
         cartellaElement.querySelector("#periodoRicovero").innerHTML =
             new Date(cartelle[id_cartella].data.inizio).toLocaleDateString("it-IT") + " " +
             (dataFine || "");
+        cartellaElement.querySelector('#show').addEventListener("click", () => {
+            window.location.href = "cartellaClinica.html?id=" + id_cartella;
+        });
         cartellaElement.querySelector("#delete").addEventListener("click", () => {
             deleteCartella(id_cartella);
             loadCartelle();
