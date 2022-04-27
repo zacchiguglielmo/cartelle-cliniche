@@ -58,7 +58,10 @@ async function loadCartelle() {
         let medico = await getMedico(cartelle[i].cf_medico);
         cartellaElement.querySelector("#nominativoMedico").innerHTML = medico.info_medico.nome + " " + medico.info_medico.cognome;
         cartellaElement.querySelector("#nominativoPaziente").innerHTML = paziente.info_paziente.nome + " " + paziente.info_paziente.cognome;
-        cartellaElement.querySelector("#periodoRicovero").innerHTML = cartelle[i].data.inizio + " " + (cartelle[i].data.fine || "");
+        console.log(cartelle[i]);
+        cartellaElement.querySelector("#periodoRicovero").innerHTML =
+            new Date(cartelle[i].data.inizio.seconds) + " " +
+            (cartelle[i].data.fine || "");
         cartellaElement.querySelector("#delete").addEventListener("click", () => {
             deleteCartella(cartelle[i].id_cartella);
             loadCartelle();
