@@ -1,9 +1,9 @@
 import { deleteCartella, getCartelle, getMedico, getPaziente } from "../dbInterface/dbInterface.js";
 
-const cf = new URLSearchParams(window.location.search).get("cf");
+const cf_paziente = new URLSearchParams(window.location.search).get("cf");
 
 // DATI PAZIENTE
-const paziente = await getPaziente(cf);
+const paziente = await getPaziente(cf_paziente);
 
 if (paziente.info_paziente.nome)
     document.getElementById("nome").innerHTML = paziente.info_paziente.nome;
@@ -45,7 +45,7 @@ else document.getElementById("cognomeContatto").parentElement.setAttribute("styl
 // CARTELLE
 async function loadCartelle() {
     document.getElementById("cartelleContainer").innerHTML = "";
-    let cartelle = await getCartelle(cf);
+    let cartelle = await getCartelle(cf_paziente);
     let response = await fetch("../templates/templateCartella.html");
     let text = await response.text();
     for (let id_cartella in cartelle) {
@@ -65,7 +65,7 @@ async function loadCartelle() {
             new Date(cartelle[id_cartella].data.inizio).toLocaleDateString("it-IT") + " " +
             (dataFine || "");
         cartellaElement.querySelector('#show').addEventListener("click", () => {
-            window.location.href = "cartellaClinica.html?id=" + id_cartella;
+            window.location.href = `cartellaClinica.html?id=${id_cartella}&cf=${cf_paziente}`;
         });
         cartellaElement.querySelector("#delete").addEventListener("click", () => {
             deleteCartella(id_cartella);
