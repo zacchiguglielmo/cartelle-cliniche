@@ -3,7 +3,7 @@ import { addCartella, getMedici } from "../dbInterface/dbInterface.js";
 let selectCfMedico = document.getElementById("cf_medico");
 const medici = await getMedici();
 for (let cf in medici)
-    selectCfMedico.innerHTML = `<option value='${cf}'>${cf} - ${medici[cf].info_medico.cognome}</option>`;
+    selectCfMedico.innerHTML += `<option value='${cf}'>${cf} - ${medici[cf].info_medico.cognome}</option>`;
 
 async function onAddPaziente() {
     let cf_paziente = new URLSearchParams(window.location.search).get("cf");
