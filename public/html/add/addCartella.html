@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/global.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="../../js/firebaseInit.js"></script>
-    <script type="module" src="../../js/addPaziente.js"></script>
+    <script type="module" src="../../js/add/addCartella.js"></script>
 
     <title>Aggiungi cartella </title>
 </head>
@@ -70,21 +70,21 @@
             <h1 class="text-center">AGGIUNGI CARTELLE CLINICHE</h1>
             <div class="container p-4 rounded">
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col text-bold">Codice fiscale paziente
                         <a style="color:red">*</a>
                     </div>
                     <div class="col">
                         <input class="form-control" id="#" required>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div class="col text-bold">Codice fiscale medico
                         <a style="color:red">*</a>
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#" required>
+                        <input class="form-control" id="cf_medico" required>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                         <a style="color:red">*</a>
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#" type="datetime-local" required>
+                        <input class="form-control" id="data_ora_inizio_ricovero" type="datetime-local" required>
                     </div>
                 </div>
                 
@@ -101,7 +101,7 @@
                     <div class="col text-bold">Stato di salute
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#">
+                        <input class="form-control" id="stato_salute">
                     </div>
                 </div>
                 
@@ -109,7 +109,7 @@
                     <div class="col text-bold">Note
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#">
+                        <input class="form-control" id="note">
                     </div>
                 </div>
 

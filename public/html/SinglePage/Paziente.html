@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../../css/global.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="module" src="../../js/firebaseInit.js"></script>
-  <script type="module" src="../../js/cartelle.js"></script>
+  <script type="module" src="../../js/pageHandler/paziente.js"></script>
 
   <title id="nomePaziente"> Paziente </title>
 </head>
@@ -61,8 +61,8 @@
       <br>
       
       <div class="center">
-        <button type="button" class="btn btn-primary text-center">
-          <a href="../add/addCartella.html" class="text-white">AGGIUNGI CARTELLA</a>
+        <button type="button" class="btn btn-primary text-center" onclick="window.location.href='../add/addCartella.html?cf='+new URLSearchParams(window.location.search).get('cf')">
+          AGGIUNGI CARTELLA
         </button>
       </div>
     </div>
@@ -113,6 +113,7 @@
     </div>
     
     </div>
+    <div id="cartelleContainer" class="container p-3 rounded" style="background-color:#adb5bd"></div>
   </main>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -120,5 +121,4 @@
     crossorigin="anonymous"></script>
     
 </body>
-
 </html>
