@@ -60,9 +60,9 @@ async function loadCartelle() {
         cartellaElement.querySelector("#nominativoPaziente").innerHTML = paziente.info_paziente.nome + " " + paziente.info_paziente.cognome;
         let dateTimeFine = cartelle[i].data.fine;
         let dataFine;
-        if (dateTimeFine) dataFine = new Date(dateTimeFine.seconds * 1000);
+        if (dateTimeFine) dataFine = new Date(dateTimeFine.seconds * 1000).toLocaleDateString("it-IT");
         cartellaElement.querySelector("#periodoRicovero").innerHTML =
-            new Date(cartelle[i].data.inizio.seconds * 1000) + " " +
+            new Date(cartelle[i].data.inizio.seconds * 1000).toLocaleDateString("it-IT") + " " +
             (dataFine || "");
         cartellaElement.querySelector("#delete").addEventListener("click", () => {
             deleteCartella(cartelle[i].id_cartella);
