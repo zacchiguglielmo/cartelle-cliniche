@@ -48,34 +48,34 @@ async function loadCartelle() {
     let cartelle = await getCartelle(cf);
     let response = await fetch("../templates/templateCartella.html");
     let text = await response.text();
-    for (let i in cartelle) {
+    for (let id_cartella in cartelle) {
         let cartellaElement = document.createElement("div");
         cartellaElement.innerHTML = text;
         cartellaElement.setAttribute("class", "row");
-        cartellaElement.setAttribute("id", cartelle[i].id_cartella);
+        cartellaElement.setAttribute("id", id_cartella);
 
         // SET VALUES
-        let medico = await getMedico(cartelle[i].cf_medico);
+        let medico = await getMedico(cartelle[id_cartella].cf_medico);
         cartellaElement.querySelector("#nominativoMedico").innerHTML = medico.info_medico.nome + " " + medico.info_medico.cognome;
         cartellaElement.querySelector("#nominativoPaziente").innerHTML = paziente.info_paziente.nome + " " + paziente.info_paziente.cognome;
-        let dateTimeFine = cartelle[i].data.fine;
+        let stringDataFine = cartelle[id_cartella].data.fine;
         let dataFine;
-        if (dateTimeFine) dataFine = new Date(dateTimeFine.seconds * 1000).toLocaleDateString("it-IT");
+        if (stringDataFine) dataFine = new Date(stringDataFine).toLocaleDateString("it-IT");
         cartellaElement.querySelector("#periodoRicovero").innerHTML =
-            new Date(cartelle[i].data.inizio.seconds * 1000).toLocaleDateString("it-IT") + " " +
+            new Date(cartelle[id_cartella].data.inizio).toLocaleDateString("it-IT") + " " +
             (dataFine || "");
         cartellaElement.querySelector("#delete").addEventListener("click", () => {
-            deleteCartella(cartelle[i].id_cartella);
+            deleteCartella(id_cartella);
             loadCartelle();
         });
 
         // FIX ID NAMES
-        cartellaElement.querySelector("#nominativoMedico").setAttribute("id", "nominativoMedico" + i);
-        cartellaElement.querySelector("#nominativoPaziente").setAttribute("id", "nominativoPaziente" + i);
-        cartellaElement.querySelector("#periodoRicovero").setAttribute("id", "periodoRicovero" + i);
-        cartellaElement.querySelector("#show").setAttribute("id", "show" + i);
-        cartellaElement.querySelector("#modify").setAttribute("id", "modify" + i);
-        cartellaElement.querySelector("#delete").setAttribute("id", "delete" + i);
+        cartellaElement.querySelector("#nominativoMedico").setAttribute("id", "nominativoMedico" + id_cartella);
+        cartellaElement.querySelector("#nominativoPaziente").setAttribute("id", "nominativoPaziente" + id_cartella);
+        cartellaElement.querySelector("#periodoRicovero").setAttribute("id", "periodoRicovero" + id_cartella);
+        cartellaElement.querySelector("#show").setAttribute("id", "show" + id_cartella);
+        cartellaElement.querySelector("#modify").setAttribute("id", "modify" + id_cartella);
+        cartellaElement.querySelector("#delete").setAttribute("id", "delete" + id_cartella);
 
         // ADD CHILD
         document.getElementById("cartelleContainer").appendChild(cartellaElement);
