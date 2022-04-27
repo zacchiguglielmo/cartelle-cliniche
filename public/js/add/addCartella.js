@@ -27,7 +27,7 @@ async function onAddPaziente() {
 
     await addCartella(cartella, cf_paziente);
 
-    // window.location.href = "../singlePage/paziente.html?cf=" + cf_paziente;
+    window.location.href = "../singlePage/paziente.html?cf=" + cf_paziente;
 }
 
 $("#submit").click(onAddPaziente);
