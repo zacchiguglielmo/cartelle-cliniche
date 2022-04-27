@@ -79,18 +79,20 @@ export async function getCartellaFromRealtimeDB(cf_paziente, id_cartella) {
 
 // DELETE
 async function deleteFromDb(path) {
-  set(ref(db, path), null);
+  await set(ref(db, path), null);
 }
 
-export function deletePazienteFromRealtimeDB(cf_paziente) {
-  deleteFromDb("pazienti/" + cf_paziente);
+export async function deletePazienteFromRealtimeDB(cf_paziente) {
+  const cartelle = await getCartelleFromRealtimeDB(cf_paziente);
+  for (let id in cartelle) await deleteCartellaFromRealtimeDB(cf_paziente, id);
+  await deleteFromDb("pazienti/" + cf_paziente);
 }
 
-export function deleteMedicoFromRealtimeDB(cf_medico) {
+export async function deleteMedicoFromRealtimeDB(cf_medico) {
   deleteFromDb("medici/" + cf_medico);
 }
 
-export function deleteCartellaFromRealtimeDB(cf_paziente, id_cartella) {
+export async function deleteCartellaFromRealtimeDB(cf_paziente, id_cartella) {
   deleteFromDb(`cartelle/${cf_paziente}/${id_cartella}`);
 }
 

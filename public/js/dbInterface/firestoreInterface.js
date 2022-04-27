@@ -84,6 +84,9 @@ async function deleteFromFirestore(path, documentName) {
 }
 
 export async function deletePazienteFromFirestore(cf_paziente) {
+    const cartelle = await getCartelleFromFirestore(cf_paziente);
+    for (let id in cartelle)
+        await deleteCartellaFromFirestore(id);
     await deleteFromFirestore("pazienti", cf_paziente);
 }
 

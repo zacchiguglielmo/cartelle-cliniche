@@ -18,3 +18,4 @@ else document.getElementById().parentElement.setAttribute("style", "display: non
 if (cartella.info_cartella.note)
     document.getElementById("note").innerHTML = cartella.info_cartella.note;
 else document.getElementById().parentElement.setAttribute("style", "display: none");
+
