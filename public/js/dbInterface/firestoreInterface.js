@@ -54,8 +54,7 @@ export async function getPazientiFromFirestore() {
 }
 
 export async function getPazienteFromFirestore(cf_paziente) {
-    const queryPaziente = query(collection(db, "pazienti"), where("cf_paziente", "==", cf_paziente));
-    return (await getDocs(queryPaziente)).data()[0];
+    return (await getDoc(doc(db, "pazienti", cf_paziente))).data();
 }
 
 export async function getMediciFromFirestore() {
@@ -63,11 +62,11 @@ export async function getMediciFromFirestore() {
 }
 
 export async function getMedicoFromFirestore(cf_medico) {
-    return (await queryFirestore("medici", "cf_medico", cf_medico))[0];
+    return (await queryFirestore("medici", "cf_medico", cf_medico))[cf_medico];
 }
 
 export async function getCartelleFromFirestore(cf_paziente) {
-    return (await queryFirestore("cartelle-cliniche", "cf_paziente", cf_paziente))[0];
+    return (await queryFirestore("cartelle-cliniche", "cf_paziente", cf_paziente));
 }
 
 export async function getCartellaFromFirestore(id_cartella) {

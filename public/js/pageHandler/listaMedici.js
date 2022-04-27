@@ -1,4 +1,4 @@
-import { deleteMedico, getMedici } from "./dbInterface/dbInterface.js";
+import { deleteMedico, getMedici } from "../dbInterface/dbInterface.js";
 
 function getAge(dateString) {
     var today = new Date();

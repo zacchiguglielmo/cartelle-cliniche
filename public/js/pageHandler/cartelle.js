@@ -1,4 +1,4 @@
-import * as config from "./config.js";
+import * as config from "../config.js";
 import { getCartelleFromRealtimeDB, getMedicoFromRealtimeDB, getPazienteFromRealtimeDB } from "./realtimeInterface.js";
 
 
