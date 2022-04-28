@@ -4,6 +4,7 @@ import {
   child,
   get,
   set,
+  push
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 const db = getDatabase();
@@ -26,7 +27,7 @@ export async function addPazienteToRealtimeDB(paziente) {
 
 export async function addMedicoToRealtimeDB(medico) {
   if (medico.cf_medico == undefined) console.error("CF medico obbligatorio");
-  else await addOnDb("/medico", medico, medico.cf_medico);
+  else await addOnDb("/medici", medico, medico.cf_medico);
 }
 
 export async function addCartellaToRealtimeDB(cartella, cf_paziente) {
@@ -34,7 +35,7 @@ export async function addCartellaToRealtimeDB(cartella, cf_paziente) {
 }
 
 export async function addRefertoToRealtimeDB(referto, id_cartella, cf_paziente, tipo_referto) {
-  await addOnDb(`/cartelle/${cf_paziente}/${id_cartella}/${tipo_referto}`, referto);
+  await addOnDb(`/cartelle/${cf_paziente}/${id_cartella}/referti/${tipo_referto}`, referto);
 };
 // END CREATE
 
@@ -50,7 +51,7 @@ export async function getPazientiFromRealtimeDB() {
 }
 
 export async function getPazienteFromRealtimeDB(cf_paziente) {
-  return await getPazienti()[cf_paziente];
+  return (await getPazientiFromRealtimeDB())[cf_paziente];
 }
 
 export async function getMediciFromRealtimeDB() {
@@ -58,18 +59,31 @@ export async function getMediciFromRealtimeDB() {
 }
 
 export async function getMedicoFromRealtimeDB(cf_medico) {
-  return await getMedici()[cf_medico];
+  return (await getMediciFromRealtimeDB())[cf_medico];
 }
 
 export async function getCartelleFromRealtimeDB(cf_paziente) {
   if (cf_paziente == undefined)
-    return await getFromDb("/cartelle_cliniche");
+    return await getFromDb("/cartelle");
   else
-    return await getFromDb(`/ cartelle_cliniche / ${cf_paziente}`);
+    return await getFromDb(`/cartelle/${cf_paziente}`);
 }
 
 export async function getCartellaFromRealtimeDB(cf_paziente, id_cartella) {
-  return await getCartella(cf_paziente)[id_cartella];
+  return (await getCartelleFromRealtimeDB(cf_paziente))[id_cartella];
+}
+
+export async function getRefertiFromRealtimeDB(cf_paziente, id_cartella) {
+  const cartella = await getCartellaFromRealtimeDB(cf_paziente, id_cartella);
+  const obj = {};
+  for (const tipo_referto in cartella.referti) {
+    obj[tipo_referto] = {};
+    for (const id_referto in cartella.referti[tipo_referto]) {
+      obj[tipo_referto][id_referto] = cartella.referti[tipo_referto][id_referto];
+    }
+  }
+
+  return obj;
 }
 // END READ
 

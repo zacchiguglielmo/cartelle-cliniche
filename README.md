@@ -31,7 +31,7 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
 		id_cartella,
 		cf_medico,
 		info_cartella: {},
-		data: {}
+		referti: {}
 	}]
  }
  medici: [{
@@ -56,4 +56,6 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
 
 ## TODO
 
+- non inserire valori null nel db
+- medico.js
 - addReferto.html: change id visualization to classes

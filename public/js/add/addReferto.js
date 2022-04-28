@@ -28,7 +28,7 @@ async function onAddReferto() {
 
     await addReferto(referto, id_cartella, cf_paziente, tipoReferto);
 
-    window.location.href = `cartellaClinica.html?id=${id_cartella}&cf=${cf_paziente}`;
+    window.location.href = `../singlePage/cartellaClinica.html?id=${id_cartella}&cf=${cf_paziente}`;
 }
 
 document.getElementById("submit").addEventListener("click", onAddReferto);

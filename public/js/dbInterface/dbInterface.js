@@ -126,6 +126,18 @@ export async function getCartella(id_cartella, cf_paziente) {
         console.error(ERROR_MSG);
     }
 }
+
+export async function getReferti(id_cartella, cf_paziente) {
+    if (DB_SYSTEM == "realtime") {
+        return realtime.getRefertiFromRealtimeDB(cf_paziente, id_cartella);
+    }
+    else if (DB_SYSTEM == "firestore") {
+        return firestore.getRefertiFromFirestore(id_cartella);
+    }
+    else {
+        console.error(ERROR_MSG);
+    }
+};
 // END READ
 
 // UPDATE

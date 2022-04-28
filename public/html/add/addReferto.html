@@ -192,19 +192,19 @@
                         disableEverything();
                         
                         switch (tipoReferto) {
-                            case "prescrizione": 
+                            case "prescrizioni":
                                 divPrescrizione.classList.remove("visually-hidden");
                                 document.getElementById("nomeCura").setAttribute("required", "");
                                 document.getElementById("descrizioneCura").setAttribute("required", "");
                                 break;
-                            case "intervento": 
+                            case "interventi": 
                                 divIntervento.classList.remove("visually-hidden"); 
                                 document.getElementById("tipoIntervento").setAttribute("required", "");
                                 document.getElementById("orarioInizioIntervento").setAttribute("required", "");
                                 document.getElementById("orarioFineIntervento").setAttribute("required", "");
                                 document.getElementById("esitoIntervento").setAttribute("required", "");
                                 break;
-                            case "esame": 
+                            case "esami":
                                 divEsame.classList.remove("visually-hidden"); 
                                 document.getElementById("tipoEsame").setAttribute("required", "");
                                 document.getElementById("risultatiEsame").setAttribute("required", "");
@@ -215,6 +215,7 @@
                                 break;
                         }
                     }
+                    tipoRefertoField.onchange();
                 </script>
 
             </div>

@@ -1,4 +1,4 @@
-import { getFirestore, doc, setDoc, addDoc, getDoc, getDocs, deleteDoc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
+import { getFirestore, doc, setDoc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, collection, query, where, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
 
 const db = getFirestore();
 
@@ -25,7 +25,11 @@ export async function addCartellaToFirestore(cartella) {
 }
 
 export async function addRefertoToFirestore(referto, id_cartella, tipo_referto) {
-    return await addToFirestore(referto, `cartelle-cliniche/${id_cartella}/${tipo_referto}`);
+    const id_referto = await addToFirestore(referto, `cartelle-cliniche/${id_cartella}/${tipo_referto}`);
+    await updateDoc(doc(db, "cartelle-cliniche", id_cartella), {
+        referti: arrayUnion({ id_referto, tipo_referto })
+    });
+    return id_referto;
 }
 // END CREATE
 
@@ -71,6 +75,20 @@ export async function getCartelleFromFirestore(cf_paziente) {
 
 export async function getCartellaFromFirestore(id_cartella) {
     return (await getDoc(doc(db, "cartelle-cliniche", id_cartella))).data();
+}
+
+export async function getRefertoFromFirestore(id_cartella, tipo_referto, id_referto) {
+    return (await getDoc(doc(db, `cartelle-cliniche/${id_cartella}/${tipo_referto}`, id_referto))).data();
+}
+
+export async function getRefertiFromFirestore(id_cartella) {
+    const cartella = await getCartellaFromFirestore(id_cartella);
+    const obj = {};
+    for (let refReferto of cartella.referti) {
+        if (!obj[refReferto.tipo_referto]) obj[refReferto.tipo_referto] = [];
+        obj[refReferto.tipo_referto].push(await getRefertoFromFirestore(id_cartella, refReferto.tipo_referto, refReferto.id_referto));
+    }
+    return obj;
 }
 // END READ
 

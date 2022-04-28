@@ -1,4 +1,4 @@
-import { getCartella, getMedico, getPaziente } from "../dbInterface/dbInterface.js";
+import { getCartella, getMedico, getPaziente, getReferti } from "../dbInterface/dbInterface.js";
 
 const queryParams = new URLSearchParams(window.location.search);
 const id_cartella = queryParams.get('id');
@@ -17,5 +17,10 @@ if (cartella.info_cartella.stato_salute)
 else document.getElementById().parentElement.setAttribute("style", "display: none");
 if (cartella.info_cartella.note)
     document.getElementById("note").innerHTML = cartella.info_cartella.note;
-else document.getElementById().parentElement.setAttribute("style", "display: none");
+else document.getElementById("note").parentElement.setAttribute("style", "display: none");
 
+async function loadReferti() {
+    console.log(await getReferti(id_cartella, cf_paziente));
+}
+
+loadReferti();
