@@ -140,10 +140,6 @@ export async function getReferti(id_cartella, cf_paziente) {
 };
 // END READ
 
-// UPDATE
-// TODO: update
-// END UPDATE
-
 // DELETE
 export async function deletePaziente(cf_paziente) {
     if (DB_SYSTEM == "realtime") {

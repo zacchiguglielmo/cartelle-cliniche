@@ -88,10 +88,6 @@ export async function getRefertiFromRealtimeDB(cf_paziente, id_cartella) {
 }
 // END READ
 
-// UPDATE
-// TODO: update
-// END UPDATE
-
 // DELETE
 async function deleteFromDb(path) {
   await set(ref(db, path), null);

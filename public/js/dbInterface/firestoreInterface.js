@@ -108,10 +108,6 @@ export async function getRefertiFromFirestore(id_cartella) {
 }
 // END READ
 
-// UPDATE
-// TODO: update
-// END UPDATE
-
 // DELETE
 async function deleteFromFirestore(path, documentName) {
     await deleteDoc(doc(db, path, documentName));

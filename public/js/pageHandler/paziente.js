@@ -76,7 +76,7 @@ async function loadCartelle() {
         cartellaElement.querySelector("#nominativoPaziente").setAttribute("id", "nominativoPaziente" + id_cartella);
         cartellaElement.querySelector("#periodoRicovero").setAttribute("id", "periodoRicovero" + id_cartella);
         cartellaElement.querySelector("#show").setAttribute("id", "show" + id_cartella);
-        cartellaElement.querySelector("#modify").setAttribute("id", "modify" + id_cartella);
+        // cartellaElement.querySelector("#modify").setAttribute("id", "modify" + id_cartella);
         cartellaElement.querySelector("#delete").setAttribute("id", "delete" + id_cartella);
 
         // ADD CHILD

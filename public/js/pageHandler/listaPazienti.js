@@ -46,7 +46,7 @@ async function loadPazienti() {
         pazienteElement.querySelector("#eta").setAttribute("id", "eta" + cf);
         pazienteElement.querySelector("#sesso").setAttribute("id", "sesso" + cf);
         pazienteElement.querySelector("#show").setAttribute("id", "show" + cf);
-        pazienteElement.querySelector("#modify").setAttribute("id", "modify" + cf);
+        // pazienteElement.querySelector("#modify").setAttribute("id", "modify" + cf);
         pazienteElement.querySelector("#delete").setAttribute("id", "delete" + cf);
 
         // ADD CHILD

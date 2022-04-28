@@ -16,37 +16,36 @@ async function loadMedici() {
 
     let response = await fetch("../templates/templateMedico.html");
     let text = await response.text();
-    for (let i in medici) {
+    for (let cf_medico in medici) {
         let medicoElement = document.createElement("div");
         medicoElement.innerHTML = text;
         medicoElement.setAttribute("class", "row");
-        medicoElement.setAttribute("id", medici[i].cf_medico);
+        medicoElement.setAttribute("id", medici[cf_medico].cf_medico);
 
         // SET VALUES
-        medicoElement.querySelector("#nome").innerHTML = medici[i].info_medico.nome;
-        medicoElement.querySelector("#cognome").innerHTML = medici[i].info_medico.cognome;
+        medicoElement.querySelector("#nome").innerHTML = medici[cf_medico].info_medico.nome;
+        medicoElement.querySelector("#cognome").innerHTML = medici[cf_medico].info_medico.cognome;
         medicoElement.querySelector("#dataNascita").innerHTML =
-            medici[i].info_medico.dataNascita;
-        medicoElement.querySelector("#eta").innerHTML = getAge(
-            medici[i].info_medico.dataNascita
-        );
-        medicoElement.querySelector("#sesso").innerHTML = medici[i].info_medico.sesso;
-        medicoElement.querySelector("#specializzazione").innerHTML = medici[i].info_medico.specializzazione;
+            medici[cf_medico].info_medico.dataNascita;
+        medicoElement.querySelector("#sesso").innerHTML = medici[cf_medico].info_medico.sesso;
+        medicoElement.querySelector("#specializzazione").innerHTML = medici[cf_medico].info_medico.specializzazione;
+        medicoElement.querySelector("#show").addEventListener("click", () => {
+            window.location.href = "../singlePage/medico.html?cf=" + cf_medico;
+        });
         medicoElement.querySelector("#delete").addEventListener("click", () => {
-            deleteMedico(medici[i].cf_medico);
+            deleteMedico(medici[cf_medico].cf_medico);
             loadMedici();
         });
 
         // FIX ID NAMES
-        medicoElement.querySelector("#nome").setAttribute("id", "nome" + i);
-        medicoElement.querySelector("#cognome").setAttribute("id", "cognome" + i);
-        medicoElement.querySelector("#dataNascita").setAttribute("id", "dataNascita" + i);
-        medicoElement.querySelector("#eta").setAttribute("id", "eta" + i);
-        medicoElement.querySelector("#sesso").setAttribute("id", "sesso" + i);
-        medicoElement.querySelector("#specializzazione").setAttribute("id", "specializzazione" + i);
-        medicoElement.querySelector("#show").setAttribute("id", "show" + i);
-        medicoElement.querySelector("#modify").setAttribute("id", "modify" + i);
-        medicoElement.querySelector("#delete").setAttribute("id", "delete" + i);
+        medicoElement.querySelector("#nome").setAttribute("id", "nome" + cf_medico);
+        medicoElement.querySelector("#cognome").setAttribute("id", "cognome" + cf_medico);
+        medicoElement.querySelector("#dataNascita").setAttribute("id", "dataNascita" + cf_medico);
+        medicoElement.querySelector("#sesso").setAttribute("id", "sesso" + cf_medico);
+        medicoElement.querySelector("#specializzazione").setAttribute("id", "specializzazione" + cf_medico);
+        medicoElement.querySelector("#show").setAttribute("id", "show" + cf_medico);
+        // medicoElement.querySelector("#modify").setAttribute("id", "modify" + i);
+        medicoElement.querySelector("#delete").setAttribute("id", "delete" + cf_medico);
 
         // ADD CHILD
         document.getElementById("mediciContainer").innerHTML = "";
