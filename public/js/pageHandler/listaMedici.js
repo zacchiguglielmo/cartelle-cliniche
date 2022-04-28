@@ -28,9 +28,7 @@ async function loadMedici() {
         medicoElement.querySelector("#cognome").innerHTML = medici[i].info_medico.cognome;
         medicoElement.querySelector("#dataNascita").innerHTML =
             medici[i].info_medico.dataNascita;
-        medicoElement.querySelector("#eta").innerHTML = getAge(
-            medici[i].info_medico.dataNascita
-        );
+        
         medicoElement.querySelector("#sesso").innerHTML = medici[i].info_medico.sesso;
         medicoElement.querySelector("#specializzazione").innerHTML = medici[i].info_medico.specializzazione;
         medicoElement.querySelector("#delete").addEventListener("click", () => {
@@ -42,7 +40,6 @@ async function loadMedici() {
         medicoElement.querySelector("#nome").setAttribute("id", "nome" + i);
         medicoElement.querySelector("#cognome").setAttribute("id", "cognome" + i);
         medicoElement.querySelector("#dataNascita").setAttribute("id", "dataNascita" + i);
-        medicoElement.querySelector("#eta").setAttribute("id", "eta" + i);
         medicoElement.querySelector("#sesso").setAttribute("id", "sesso" + i);
         medicoElement.querySelector("#specializzazione").setAttribute("id", "specializzazione" + i);
         medicoElement.querySelector("#show").setAttribute("id", "show" + i);
