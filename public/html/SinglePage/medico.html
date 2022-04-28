@@ -18,7 +18,7 @@
     <script type="module" src="../../js/firebaseInit.js"></script>
     <script type="module" src="../../js/pageHandler/cartella.js"></script>
 
-    <title>Cartella Clinica</title>
+    <title>Medico</title>
   </head>
 
   <body>
@@ -60,15 +60,18 @@
     <main class="container">
       <div class="p-3 rounded" style="background-color: #adb5bd">
         <br />
-        <h1 class="text-right">Cartella Clinica</h1>
+        <h1 class="text-right">Medico</h1>
         <br />
-        <p>◄Medico: <a id="nominativoMedico"><i>querying...</i></a></p>
-        <p>◄Paziente: <a id="nominativoPaziente"><i>querying...</i></a></p>
-        <p>◄Periodo di ricovero : <a id="periodoRicovero"><i>querying...</i></a></p>
-        <p>◄Stato di salute: <a id="statoSalute"><i>querying...</i></a></p>
-        <p>◄Note: <a id="note"><i>querying...</i></a></p>
+        <p>◄Nome: <a id="nome"><i>querying...</i></a></p>
+        <p>◄Cognome: <a id="cognome"><i>querying...</i></a></p>
+        <p>◄Data di nascita: <a id="dataNascita"><i>querying...</i></a></p>
+        <p>◄Luogo di nascita: <a id="luogoNascita"><i>querying...</i></a></p>
+        <p>◄Sesso biologico: <a id="sesso"><i>querying...</i></a></p>
+        <p>◄Cittadinanza: <a id="cittadinanza"><i>querying...</i></a></p>
+        <p>◄Specializzazione: <a id="specializzazione"><i>querying...</i></a></p>
+        <!--
         <div class="center mt-sm-5">
-          <button
+            <button
             type="button"
             class="btn btn-primary text-center"
             onclick="
@@ -78,10 +81,11 @@
             AGGIUNGI REFERTO
           </button>
         </div>
+      -->
       </div>
       <br />
       <div
-        id="esameContainer"
+        id=""
         class="container p-3 rounded mb-sm-4"
         style="background-color: #adb5bd"
       ></div>
