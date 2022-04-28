@@ -46,7 +46,6 @@ async function loadReferti() {
             refertoElement.querySelector("#data").innerHTML = referto.data;
             refertoElement.querySelector("#note").innerHTML = referto.note;
 
-            // todo: info referto
             for (let key in referto.info_referto) {
                 let formattedKey = key.replace(/([A-Z])/g, " $1");
                 formattedKey = formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1).toLowerCase();
