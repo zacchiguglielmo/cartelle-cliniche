@@ -43,11 +43,10 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
 
 ### Firestore
 
-- Collezione persone
-  - Documento pazienti
-  - Documento medici
+- Collezione pazienti
+- Collezione medici
 - Collezione cartelle
-- Documento per ogni cartella
+  - una collezione per ogni tipo di referto
 
 ## Note
 
