@@ -20,6 +20,7 @@ if (cartella.info_cartella.note)
 else document.getElementById("note").parentElement.setAttribute("style", "display: none");
 
 async function loadReferti() {
+    document.getElementById("refertiContainer").innerHTML = "";
     const referti = await getReferti(id_cartella, cf_paziente);
 
     let response = await fetch("../templates/templateTipoReferto.html");
@@ -36,6 +37,7 @@ async function loadReferti() {
         tipoRefertoElement.querySelector("#tipo_referto_header").setAttribute("id", `${tipo_referto}_header`);
 
         for (const referto of referti[tipo_referto]) {
+            console.log(referto);
             let refertoElement = document.createElement("div");
             refertoElement.innerHTML = textReferto;
             refertoElement.setAttribute("class", "row");
@@ -46,16 +48,18 @@ async function loadReferti() {
             refertoElement.querySelector("#note").innerHTML = referto.note;
 
             // todo: info referto
+            for (let key in referto.info_referto) {
+
+            }
 
             refertoElement.querySelector("#delete").addEventListener("click", async () => {
-                await deleteReferto(id_cartella, cf_paziente, tipo_referto, referto.id_referto);
+                await deleteReferto(id_cartella, cf_paziente, tipo_referto, referto.id);
                 loadReferti();
             });
 
             tipoRefertoElement.querySelector("#tipo_referto_container").appendChild(refertoElement);
         }
 
-        document.getElementById("refertiContainer").innerHTML = "";
         document.getElementById("refertiContainer").appendChild(tipoRefertoElement);
     }
 }
