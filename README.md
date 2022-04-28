@@ -56,6 +56,6 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
 
 ## TODO
 
-- non inserire valori null nel db
 - medico.js
+- non inserire valori null nel db
 - addReferto.html: change id visualization to classes

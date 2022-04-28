@@ -12,7 +12,6 @@ function getAge(dateString) {
 }
 
 async function loadMedici() {
-    document.getElementById("mediciContainer").innerHTML = "";
     let medici = await getMedici();
 
     let response = await fetch("../templates/templateMedico.html");
@@ -47,6 +46,7 @@ async function loadMedici() {
         medicoElement.querySelector("#delete").setAttribute("id", "delete" + i);
 
         // ADD CHILD
+        document.getElementById("mediciContainer").innerHTML = "";
         document.getElementById("mediciContainer").appendChild(medicoElement);
     }
 }

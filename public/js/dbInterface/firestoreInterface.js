@@ -1,4 +1,18 @@
-import { getFirestore, doc, setDoc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, collection, query, where, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    addDoc,
+    getDoc,
+    getDocs,
+    updateDoc,
+    deleteDoc,
+    collection,
+    query,
+    where,
+    arrayUnion,
+    arrayRemove
+} from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
 
 const db = getFirestore();
 
@@ -86,7 +100,9 @@ export async function getRefertiFromFirestore(id_cartella) {
     const obj = {};
     for (let refReferto of cartella.referti) {
         if (!obj[refReferto.tipo_referto]) obj[refReferto.tipo_referto] = [];
-        obj[refReferto.tipo_referto].push(await getRefertoFromFirestore(id_cartella, refReferto.tipo_referto, refReferto.id_referto));
+        const referto = await getRefertoFromFirestore(id_cartella, refReferto.tipo_referto, refReferto.id_referto);
+        referto.id = refReferto.id_referto;
+        obj[refReferto.tipo_referto].push(referto);
     }
     return obj;
 }
@@ -117,6 +133,9 @@ export async function deleteCartellaFromFirestore(id_cartella) {
 }
 
 export async function deleteRefertoFromFirestore(id_cartella, tipo_referto, id_referto) {
+    await updateDoc(doc(db, "cartelle-cliniche", id_cartella), {
+        referti: arrayRemove({ id_referto, tipo_referto })
+    });
     await deleteFromFirestore(`cartelle-cliniche/${id_cartella}/${tipo_referto}`, id_referto);
 }
 // END DELETE

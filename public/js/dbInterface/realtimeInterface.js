@@ -80,6 +80,7 @@ export async function getRefertiFromRealtimeDB(cf_paziente, id_cartella) {
     obj[tipo_referto] = {};
     for (const id_referto in cartella.referti[tipo_referto]) {
       obj[tipo_referto][id_referto] = cartella.referti[tipo_referto][id_referto];
+      obj[tipo_referto][id_referto].id_referto = id_referto;
     }
   }
 

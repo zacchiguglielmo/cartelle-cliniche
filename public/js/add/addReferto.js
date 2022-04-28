@@ -19,11 +19,12 @@ async function onAddReferto() {
     let referto = {
         cf_medico_responsabile,
         data,
-        note
+        note,
+        info_referto: {}
     };
 
     for (const el of document.getElementsByClassName(tipoReferto)) {
-        referto[el.id] = el.value;
+        referto.info_referto[el.id] = el.value;
     }
 
     await addReferto(referto, id_cartella, cf_paziente, tipoReferto);

@@ -12,7 +12,6 @@ function getAge(dateString) {
 }
 
 async function loadPazienti() {
-    document.getElementById("pazientiContainer").innerHTML = "";
     let pazienti = await getPazienti();
 
     let response = await fetch("../templates/templatePaziente.html");
@@ -51,6 +50,7 @@ async function loadPazienti() {
         pazienteElement.querySelector("#delete").setAttribute("id", "delete" + cf);
 
         // ADD CHILD
+        document.getElementById("pazientiContainer").innerHTML = "";
         document.getElementById("pazientiContainer").appendChild(pazienteElement);
     }
 }
