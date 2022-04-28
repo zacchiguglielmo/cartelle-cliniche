@@ -37,7 +37,6 @@ async function loadReferti() {
         tipoRefertoElement.querySelector("#tipo_referto_header").setAttribute("id", `${tipo_referto}_header`);
 
         for (const referto of referti[tipo_referto]) {
-            console.log(referto);
             let refertoElement = document.createElement("div");
             refertoElement.innerHTML = textReferto;
             refertoElement.setAttribute("class", "row");
@@ -49,7 +48,11 @@ async function loadReferti() {
 
             // todo: info referto
             for (let key in referto.info_referto) {
-
+                let formattedKey = key.replace(/([A-Z])/g, " $1");
+                formattedKey = formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1).toLowerCase();
+                let pElement = document.createElement("div");
+                pElement.innerHTML = `${formattedKey}: ${referto.info_referto[key]}`;
+                refertoElement.querySelector("#info_referto").appendChild(pElement);
             }
 
             refertoElement.querySelector("#delete").addEventListener("click", async () => {
