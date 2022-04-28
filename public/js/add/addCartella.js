@@ -1,5 +1,6 @@
 import { addCartella, getMedici } from "../dbInterface/dbInterface.js";
 
+// select medico dropdown
 let selectCfMedico = document.getElementById("cf_medico");
 const medici = await getMedici();
 for (let cf in medici)

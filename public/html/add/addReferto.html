@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/global.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="../../js/firebaseInit.js"></script>
-    <script type="module" src="../../js/addPaziente.js"></script>
+    <script type="module" src="../../js/add/addReferto.js"></script>
 
     <title>Aggiungi esame</title>
 </head>
@@ -35,9 +35,6 @@
                 <a class="nav-link active" aria-current="page" href="../lists/listaMedici.html">Lista medici</a>
               </li>
             </ul>
-            <button type="button" class="btn btn-primary">
-              Accedi
-            </button>
           </div>
         </div>
       </nav>
@@ -46,19 +43,11 @@
         <div class="p-3 rounded" style="background-color:#adb5bd">
             <h1 class="text-center">AGGIUNGI REFERTO</h1>
             <div class="container p-4 rounded">
-
-                <div class="row">
-                    <div class="col text-bold">ID Cartella
-                    </div>
-                    <div class="col">
-                        <input class="form-control" id="#" required>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col text-bold">Medico responsabile
                     </div>
                     <div class="col">
-                        <input class="form-control" id="#" required>
+                        <select class="form-control" id="cfMedicoResponsabile" required></select>
                     </div>
                 </div>
 
@@ -66,7 +55,7 @@
                     <div class="col text-bold">Data
                     </div>
                     <div class="col">
-                        <input class="form-control" id="noteCura" type="date" required>
+                        <input class="form-control" id="data" type="date" required>
                     </div>
                 </div>
 
@@ -76,10 +65,9 @@
 
                     <div class="col">
                         <select class="form-select" id="tipoReferto" required>
-                            <option value=""></option>
-                            <option value="prescrizione">Prescrizione</option>
-                            <option value="intervento">Intervento</option>
-                            <option value="esame">Esame</option>
+                            <option value="prescrizioni">Prescrizione</option>
+                            <option value="interventi">Intervento</option>
+                            <option value="esami">Esame</option>
                             <option value="anamnesi">Anamnesi</option>
                         </select>
                     </div>
@@ -90,14 +78,14 @@
                         <div class="col text-bold">Nome cura
                         </div>
                         <div class="col">
-                            <input class="form-control" id="nomeCura" required>
+                            <input class="prescrizioni form-control" id="nomeCura" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Descrizione cura
                         </div>
                         <div class="col">
-                            <input class="form-control" id="descrizioneCura" required>
+                            <input class="prescrizioni form-control" id="descrizioneCura" required>
                         </div>
                     </div>
                 </div>
@@ -106,28 +94,28 @@
                         <div class="col text-bold">Tipo
                         </div>
                         <div class="col">
-                            <input class="form-control" id="tipoIntervento" required>
+                            <input class="interventi form-control" id="tipoIntervento" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Orario inizio
                         </div>
                         <div class="col">
-                            <input class="form-control" id="orarioInizioIntervento" type="time" required>
+                            <input class="interventi form-control" id="orarioInizioIntervento" type="time" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Orario fine
                         </div>
                         <div class="col">
-                            <input class="form-control" id="orarioFineIntervento" type="time" required>
+                            <input class="interventi form-control" id="orarioFineIntervento" type="time" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Esito
                         </div>
                         <div class="col">
-                            <input class="form-control" id="esitoIntervento" required>
+                            <input class="interventi form-control" id="esitoIntervento" required>
                         </div>
                     </div>
                 </div>
@@ -136,14 +124,14 @@
                         <div class="col text-bold">Tipo
                         </div>
                         <div class="col">
-                            <input class="form-control" id="tipoEsame" required>
+                            <input class="esami form-control" id="tipoEsame" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-bold">Risultati
                         </div>
                         <div class="col">
-                            <input class="form-control" id="risultatiEsame" required>
+                            <input class="esami form-control" id="risultatiEsame" required>
                         </div>
                     </div>
                 </div>
@@ -152,7 +140,7 @@
                         <div class="col text-bold">Descrizione
                         </div>
                         <div class="col">
-                            <input class="form-control" id="descrizioneAnamnesi" required>
+                            <input class="anamnesi form-control" id="descrizioneAnamnesi" required>
                         </div>
                     </div>
                 </div>
@@ -161,8 +149,14 @@
                     <div class="col text-bold">Note
                     </div>
                     <div class="col">
-                        <textarea class="form-control" id="noteCura" required></textarea>
+                        <textarea class="form-control" id="note" required></textarea>
                     </div>
+                </div>
+
+                <div class="container">                    
+                    <button id="submit" type="submit" class="btn btn-primary">
+                        Aggiungi
+                    </button>
                 </div>
 
                 <script>
@@ -192,7 +186,7 @@
                         document.getElementById("descrizioneAnamnesi").removeAttribute("required");
                     }
 
-                    tipoRefertoField.onchange = function () {
+                    tipoRefertoField.onchange = function() {
                         let tipoReferto = document.getElementById("tipoReferto").value;
 
                         disableEverything();

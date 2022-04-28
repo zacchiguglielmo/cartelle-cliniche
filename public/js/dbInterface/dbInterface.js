@@ -41,7 +41,7 @@ export async function addCartella(cartella, cf_paziente) {
     }
 }
 
-export async function addReferto(referto, id_cartella, tipo_referto) {
+export async function addReferto(referto, id_cartella, cf_paziente, tipo_referto) {
     if (DB_SYSTEM == "realtime") {
         return realtime.addRefertoToRealtimeDB(referto, id_cartella, cf_paziente, tipo_referto);
     }
