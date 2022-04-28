@@ -44,7 +44,6 @@ else document.getElementById("cognomeContatto").parentElement.setAttribute("styl
 
 // CARTELLE
 async function loadCartelle() {
-    document.getElementById("cartelleContainer").innerHTML = "";
     let cartelle = await getCartelle(cf_paziente);
     let response = await fetch("../templates/templateCartella.html");
     let text = await response.text();
@@ -81,6 +80,7 @@ async function loadCartelle() {
         cartellaElement.querySelector("#delete").setAttribute("id", "delete" + id_cartella);
 
         // ADD CHILD
+        document.getElementById("cartelleContainer").innerHTML = "";
         document.getElementById("cartelleContainer").appendChild(cartellaElement);
     }
 }

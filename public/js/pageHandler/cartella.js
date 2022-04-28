@@ -1,4 +1,4 @@
-import { getCartella, getMedico, getPaziente, getReferti } from "../dbInterface/dbInterface.js";
+import { deleteReferto, getCartella, getMedico, getPaziente, getReferti } from "../dbInterface/dbInterface.js";
 
 const queryParams = new URLSearchParams(window.location.search);
 const id_cartella = queryParams.get('id');
@@ -45,9 +45,17 @@ async function loadReferti() {
             refertoElement.querySelector("#data").innerHTML = referto.data;
             refertoElement.querySelector("#note").innerHTML = referto.note;
 
+            // todo: info referto
+
+            refertoElement.querySelector("#delete").addEventListener("click", async () => {
+                await deleteReferto(id_cartella, cf_paziente, tipo_referto, referto.id_referto);
+                loadReferti();
+            });
+
             tipoRefertoElement.querySelector("#tipo_referto_container").appendChild(refertoElement);
         }
 
+        document.getElementById("refertiContainer").innerHTML = "";
         document.getElementById("refertiContainer").appendChild(tipoRefertoElement);
     }
 }

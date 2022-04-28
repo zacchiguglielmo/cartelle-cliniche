@@ -87,6 +87,7 @@ export async function getRefertiFromFirestore(id_cartella) {
     for (let refReferto of cartella.referti) {
         if (!obj[refReferto.tipo_referto]) obj[refReferto.tipo_referto] = [];
         obj[refReferto.tipo_referto].push(await getRefertoFromFirestore(id_cartella, refReferto.tipo_referto, refReferto.id_referto));
+        obj[refReferto.tipo_referto].id_referto = refReferto.id_referto;
     }
     return obj;
 }
