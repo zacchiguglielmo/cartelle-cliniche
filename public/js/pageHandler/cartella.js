@@ -42,9 +42,9 @@ async function loadReferti() {
             refertoElement.setAttribute("class", "row");
 
             let medicoResponsabile = await getMedico(referto.cf_medico_responsabile);
-            refertoElement.querySelector("#nominativo_medico_responsabile").innerHTML = medicoResponsabile.info_medico.nome + " " + medicoResponsabile.info_medico.cognome;
-            refertoElement.querySelector("#data").innerHTML = referto.data;
-            refertoElement.querySelector("#note").innerHTML = referto.note;
+            refertoElement.querySelector("#nominativo_medico_responsabile").innerHTML = "Medico: " + medicoResponsabile.info_medico.nome + " " + medicoResponsabile.info_medico.cognome;
+            refertoElement.querySelector("#data").innerHTML = "Data: " + referto.data;
+            refertoElement.querySelector("#note").innerHTML = "Note: " + referto.note;
 
             for (let key in referto.info_referto) {
                 let formattedKey = key.replace(/([A-Z])/g, " $1");
