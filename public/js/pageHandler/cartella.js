@@ -1,5 +1,7 @@
 import { deleteReferto, getCartella, getMedico, getPaziente, getReferti } from "../dbInterface/dbInterface.js";
 
+
+
 const queryParams = new URLSearchParams(window.location.search);
 const id_cartella = queryParams.get('id');
 const cf_paziente = queryParams.get('cf');
@@ -8,6 +10,18 @@ const cartella = await getCartella(id_cartella, cf_paziente);
 const medico = await getMedico(cartella.cf_medico);
 const paziente = await getPaziente(cf_paziente);
 
+document.getElementById("download").addEventListener('click', function() {
+    const doc = new jsPDF();
+
+
+
+    doc.fromHTML($('#main').get(0), 20, 20, {
+        'width': 500
+    });
+
+
+    doc.save("cartellaCLinica" + paziente.info_paziente.cognome + ".pdf");
+});
 document.getElementById("nominativoMedico").innerHTML = medico.info_medico.nome + ' ' + medico.info_medico.cognome;
 document.getElementById("nominativoPaziente").innerHTML = paziente.info_paziente.nome + ' ' + paziente.info_paziente.cognome;
 let dataFine = cartella.data.fine ? new Date(cartella.data.fine).toLocaleDateString("it-IT") : undefined;
@@ -54,7 +68,7 @@ async function loadReferti() {
                 refertoElement.querySelector("#info_referto").appendChild(pElement);
             }
 
-            refertoElement.querySelector("#delete").addEventListener("click", async () => {
+            refertoElement.querySelector("#delete").addEventListener("click", async() => {
                 await deleteReferto(id_cartella, cf_paziente, tipo_referto, referto.id);
                 loadReferti();
             });
