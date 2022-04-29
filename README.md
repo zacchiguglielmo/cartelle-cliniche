@@ -56,4 +56,9 @@ Anamnesi(**id_anamnesi**, descrizione, note, data, *id_cartella*, *medico_respon
 ## TODO
 
 - non inserire valori null nel db
-- addReferto.html: change id visualization to classes
+- addReferto.html:
+  - change id visualization to classes
+  - controllo sulla data in cui è stato pubblicato il referto rispetto alla data della cartella clinica e della data odierna(quest'ultimo può essere opzionale)
+  - il campo "ora fine" di un intervento dovrebbe essere reso disponibile solo nel caso "ora inizio" è stato riempito e fare il controllo che non sia l'ora di fine sia inferiore a l'ora inizio
+- updateReferto.html:
+  - rimuovere il select
