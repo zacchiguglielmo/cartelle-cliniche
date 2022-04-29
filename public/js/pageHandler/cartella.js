@@ -20,7 +20,7 @@ document.getElementById("download").addEventListener('click', function() {
     });
 
 
-    doc.save("cartellaCLinica" + paziente.info_paziente.cognome + ".pdf");
+    doc.save("cartellaClinica" + paziente.info_paziente.cognome + ".pdf");
 });
 document.getElementById("nominativoMedico").innerHTML = medico.info_medico.nome + ' ' + medico.info_medico.cognome;
 document.getElementById("nominativoPaziente").innerHTML = paziente.info_paziente.nome + ' ' + paziente.info_paziente.cognome;
