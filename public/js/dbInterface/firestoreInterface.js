@@ -11,8 +11,9 @@ import {
     query,
     where,
     arrayUnion,
-    arrayRemove
-} from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
+    arrayRemove,
+    updateDoc,
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 const db = getFirestore();
 
@@ -20,8 +21,7 @@ const db = getFirestore();
 async function addToFirestore(object, path, id) {
     if (id == undefined) {
         return (await addDoc(collection(db, path), object)).id;
-    }
-    else {
+    } else {
         await setDoc(doc(db, path, id), object);
     }
 }
@@ -38,10 +38,17 @@ export async function addCartellaToFirestore(cartella) {
     return await addToFirestore(cartella, "cartelle-cliniche");
 }
 
-export async function addRefertoToFirestore(referto, id_cartella, tipo_referto) {
-    const id_referto = await addToFirestore(referto, `cartelle-cliniche/${id_cartella}/${tipo_referto}`);
+export async function addRefertoToFirestore(
+    referto,
+    id_cartella,
+    tipo_referto
+) {
+    const id_referto = await addToFirestore(
+        referto,
+        `cartelle-cliniche/${id_cartella}/${tipo_referto}`
+    );
     await updateDoc(doc(db, "cartelle-cliniche", id_cartella), {
-        referti: arrayUnion({ id_referto, tipo_referto })
+        referti: arrayUnion({ id_referto, tipo_referto }),
     });
     return id_referto;
 }
@@ -51,7 +58,7 @@ export async function addRefertoToFirestore(referto, id_cartella, tipo_referto) 
 async function getDocumentsFromFirestore(path) {
     let returnObj = {};
     const data = await getDocs(collection(db, path));
-    data.forEach(doc => {
+    data.forEach((doc) => {
         returnObj[doc.id] = doc.data();
     });
     return returnObj;
@@ -61,7 +68,7 @@ async function queryFirestore(path, idFieldName, id) {
     const q = query(collection(db, path), where(idFieldName, "==", id));
     const data = await getDocs(q);
     let returnObj = {};
-    data.forEach(doc => {
+    data.forEach((doc) => {
         returnObj[doc.id] = doc.data();
     });
     return returnObj;
@@ -84,15 +91,23 @@ export async function getMedicoFromFirestore(cf_medico) {
 }
 
 export async function getCartelleFromFirestore(cf_paziente) {
-    return (await queryFirestore("cartelle-cliniche", "cf_paziente", cf_paziente));
+    return await queryFirestore("cartelle-cliniche", "cf_paziente", cf_paziente);
 }
 
 export async function getCartellaFromFirestore(id_cartella) {
     return (await getDoc(doc(db, "cartelle-cliniche", id_cartella))).data();
 }
 
-export async function getRefertoFromFirestore(id_cartella, tipo_referto, id_referto) {
-    return (await getDoc(doc(db, `cartelle-cliniche/${id_cartella}/${tipo_referto}`, id_referto))).data();
+export async function getRefertoFromFirestore(
+    id_cartella,
+    tipo_referto,
+    id_referto
+) {
+    return (
+        await getDoc(
+            doc(db, `cartelle-cliniche/${id_cartella}/${tipo_referto}`, id_referto)
+        )
+    ).data();
 }
 
 export async function getRefertiFromFirestore(id_cartella) {
@@ -100,7 +115,11 @@ export async function getRefertiFromFirestore(id_cartella) {
     const obj = {};
     for (let refReferto of cartella.referti) {
         if (!obj[refReferto.tipo_referto]) obj[refReferto.tipo_referto] = [];
-        const referto = await getRefertoFromFirestore(id_cartella, refReferto.tipo_referto, refReferto.id_referto);
+        const referto = await getRefertoFromFirestore(
+            id_cartella,
+            refReferto.tipo_referto,
+            refReferto.id_referto
+        );
         referto.id = refReferto.id_referto;
         obj[refReferto.tipo_referto].push(referto);
     }
@@ -115,8 +134,7 @@ async function deleteFromFirestore(path, documentName) {
 
 export async function deletePazienteFromFirestore(cf_paziente) {
     const cartelle = await getCartelleFromFirestore(cf_paziente);
-    for (let id in cartelle)
-        await deleteCartellaFromFirestore(id);
+    for (let id in cartelle) await deleteCartellaFromFirestore(id);
     await deleteFromFirestore("pazienti", cf_paziente);
 }
 
@@ -128,10 +146,54 @@ export async function deleteCartellaFromFirestore(id_cartella) {
     await deleteFromFirestore("cartelle-cliniche", id_cartella);
 }
 
-export async function deleteRefertoFromFirestore(id_cartella, tipo_referto, id_referto) {
+export async function deleteRefertoFromFirestore(
+    id_cartella,
+    tipo_referto,
+    id_referto
+) {
     await updateDoc(doc(db, "cartelle-cliniche", id_cartella), {
-        referti: arrayRemove({ id_referto, tipo_referto })
+        referti: arrayRemove({ id_referto, tipo_referto }),
     });
-    await deleteFromFirestore(`cartelle-cliniche/${id_cartella}/${tipo_referto}`, id_referto);
+    await deleteFromFirestore(
+        `cartelle-cliniche/${id_cartella}/${tipo_referto}`,
+        id_referto
+    );
 }
 // END DELETE
+
+// UPDATE
+async function updateOnFirestore(object, path, id) {
+    if (id == undefined) {
+        return (await updateDoc(collection(db, path), object)).id;
+    } else {
+        await updateDoc(doc(db, path, id), object);
+    }
+}
+
+export async function updatePazienteOnFirestore(paziente) {
+    await updateOnFirestore(paziente, "pazienti", paziente.cf_paziente);
+}
+
+export async function updateMedicoOnFirestore(medico) {
+    await updateOnFirestore(medico, "medici", medico.cf_medico);
+}
+
+export async function updateCartellaOnFirestore(cartella) {
+    return await updateOnFirestore(cartella, "cartelle-cliniche");
+}
+
+export async function updateRefertoOnFirestore(
+    referto,
+    id_cartella,
+    tipo_referto
+) {
+    const id_referto = await updateOnFirestore(
+        referto,
+        `cartelle-cliniche/${id_cartella}/${tipo_referto}`
+    );
+    await updateDoc(doc(db, "cartelle-cliniche", id_cartella), {
+        referti: arrayUnion({ id_referto, tipo_referto }),
+    });
+    return id_referto;
+}
+// END UPDATE

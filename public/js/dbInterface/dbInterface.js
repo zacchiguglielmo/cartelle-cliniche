@@ -8,11 +8,9 @@ const ERROR_MSG = "Unknown db system: " + DB_SYSTEM + ". Change in js/config.js"
 export async function addPaziente(paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.addPazienteToRealtimeDB(paziente);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.addPazienteToFirestore(paziente);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -20,11 +18,9 @@ export async function addPaziente(paziente) {
 export async function addMedico(medico) {
     if (DB_SYSTEM == "realtime") {
         return realtime.addMedicoToRealtimeDB(medico);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.addMedicoToFirestore(medico);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -32,11 +28,9 @@ export async function addMedico(medico) {
 export async function addCartella(cartella, cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.addCartellaToRealtimeDB(cartella, cf_paziente);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.addCartellaToFirestore(cartella);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -44,11 +38,9 @@ export async function addCartella(cartella, cf_paziente) {
 export async function addReferto(referto, id_cartella, cf_paziente, tipo_referto) {
     if (DB_SYSTEM == "realtime") {
         return realtime.addRefertoToRealtimeDB(referto, id_cartella, cf_paziente, tipo_referto);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.addRefertoToFirestore(referto, id_cartella, tipo_referto);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -58,11 +50,9 @@ export async function addReferto(referto, id_cartella, cf_paziente, tipo_referto
 export async function getPazienti() {
     if (DB_SYSTEM == "realtime") {
         return realtime.getPazientiFromRealtimeDB();
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getPazientiFromFirestore();
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -70,11 +60,9 @@ export async function getPazienti() {
 export async function getPaziente(cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.getPazienteFromRealtimeDB(cf_paziente);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getPazienteFromFirestore(cf_paziente);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -82,11 +70,9 @@ export async function getPaziente(cf_paziente) {
 export async function getMedici() {
     if (DB_SYSTEM == "realtime") {
         return realtime.getMediciFromRealtimeDB();
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getMediciFromFirestore();
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -94,11 +80,9 @@ export async function getMedici() {
 export async function getMedico(cf_medico) {
     if (DB_SYSTEM == "realtime") {
         return realtime.getMedicoFromRealtimeDB(cf_medico);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getMedicoFromFirestore(cf_medico);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -106,11 +90,9 @@ export async function getMedico(cf_medico) {
 export async function getCartelle(cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.getCartelleFromRealtimeDB(cf_paziente);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getCartelleFromFirestore(cf_paziente);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -118,11 +100,9 @@ export async function getCartelle(cf_paziente) {
 export async function getCartella(id_cartella, cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.getCartellaFromRealtimeDB(cf_paziente, id_cartella);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getCartellaFromFirestore(id_cartella);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -130,11 +110,9 @@ export async function getCartella(id_cartella, cf_paziente) {
 export async function getReferti(id_cartella, cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.getRefertiFromRealtimeDB(cf_paziente, id_cartella);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.getRefertiFromFirestore(id_cartella);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 };
@@ -144,11 +122,9 @@ export async function getReferti(id_cartella, cf_paziente) {
 export async function deletePaziente(cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.deletePazienteFromRealtimeDB(cf_paziente);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.deletePazienteFromFirestore(cf_paziente);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -156,11 +132,9 @@ export async function deletePaziente(cf_paziente) {
 export async function deleteMedico(cf_medico) {
     if (DB_SYSTEM == "realtime") {
         return realtime.deleteMedicoFromRealtimeDB(cf_medico);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.deleteMedicoFromFirestore(cf_medico);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -168,11 +142,9 @@ export async function deleteMedico(cf_medico) {
 export async function deleteCartella(id_cartella, cf_paziente) {
     if (DB_SYSTEM == "realtime") {
         return realtime.deleteCartellaFromRealtimeDB(cf_paziente, id_cartella);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.deleteCartellaFromFirestore(id_cartella);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
@@ -180,12 +152,52 @@ export async function deleteCartella(id_cartella, cf_paziente) {
 export async function deleteReferto(id_cartella, cf_paziente, tipo_referto, id_referto) {
     if (DB_SYSTEM == "realtime") {
         return realtime.deleteRefertoFromRealtimeDB(cf_paziente, id_cartella, tipo_referto, id_referto);
-    }
-    else if (DB_SYSTEM == "firestore") {
+    } else if (DB_SYSTEM == "firestore") {
         return firestore.deleteRefertoFromFirestore(id_cartella, tipo_referto, id_referto);
-    }
-    else {
+    } else {
         console.error(ERROR_MSG);
     }
 }
 // END DELETE
+
+// UPDATE
+export async function updatePaziente(paziente) {
+    if (DB_SYSTEM == "realtime") {
+        return realtime.updatePazienteOnRealtimeDB(paziente);
+    } else if (DB_SYSTEM == "firestore") {
+        return firestore.updatePazienteOnFirestore(paziente);
+    } else {
+        console.error(ERROR_MSG);
+    }
+}
+
+export async function updateMedico(medico) {
+    if (DB_SYSTEM == "realtime") {
+        return realtime.updateMedicoOnRealtimeDB(medico);
+    } else if (DB_SYSTEM == "firestore") {
+        return firestore.updateMedicoOnFirestore(medico);
+    } else {
+        console.error(ERROR_MSG);
+    }
+}
+
+export async function updateCartella(cartella, cf_paziente) {
+    if (DB_SYSTEM == "realtime") {
+        return realtime.updateCartellaOnRealtimeDB(cartella, cf_paziente);
+    } else if (DB_SYSTEM == "firestore") {
+        return firestore.updateCartellaOnFirestore(cartella);
+    } else {
+        console.error(ERROR_MSG);
+    }
+}
+
+export async function updateReferto(referto, id_cartella, cf_paziente, tipo_referto) {
+    if (DB_SYSTEM == "realtime") {
+        return realtime.updateRefertoOnRealtimeDB(referto, id_cartella, cf_paziente, tipo_referto);
+    } else if (DB_SYSTEM == "firestore") {
+        return firestore.updateRefertoOnFirestore(referto, id_cartella, tipo_referto);
+    } else {
+        console.error(ERROR_MSG);
+    }
+}
+// END UPDATE
